@@ -13,13 +13,3 @@ jobs:
       uses: azure/login@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
-
-      # Deploy Bicep file
-    - name: deploy
-      uses: azure/arm-deploy@v1
-      with:
-        InlineScript: |
-          az deployment sub validate \
-          --name validate-${{ github.run_id }} \
-          --template-file main.bicep \
-          --location $LOCATION
